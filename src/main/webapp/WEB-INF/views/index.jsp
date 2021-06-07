@@ -29,6 +29,14 @@
             <td><c:out value="${customer.phoneNumber}"/></td>
             <td><c:out value="${customer.information.name}"/></td>
             <td><c:out value="${customer.offer.detailsOffer}"/></td>
+            <td>
+                <form:form method="post" action="/admin/customers/delete/${customer.pesel}">
+                    <input type="submit" value="Usuń"/>
+                </form:form>
+                <form:form method="get" action="/admin/customers/edit/${customer.pesel}">
+                    <input type="submit" value="Edytuj"/>
+                </form:form>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
