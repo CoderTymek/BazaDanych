@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: pazur
-  Date: 05.06.2021
-  Time: 00:54
+  Date: 06.06.2021
+  Time: 21:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,12 +11,10 @@
            uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>New Customer</title>
+    <title>CustomerEdit</title>
 </head>
 <body>
-
-<form:form method="post"
-           modelAttribute="customer">
+<form:form method="post" modelAttribute="customer" action="/admin/customers/edit/${customer.pesel}">
     <form:input path="pesel"/>
     <form:errors path="pesel"/><br/>
     <form:input path="name"/>
@@ -31,15 +29,10 @@
     <form:select path="offer.numberOfOffer" multiple="false" size="1">
         <form:options items="${offers}" itemValue="numberOfOffer" itemLabel="detailsOffer"/>
     </form:select><br/>
-<%--    <form:input path="offer.numberOfOffer"/>--%>
-<%--    <form:errors path="offer.numberOfOffer"/><br/>--%>
-<%--    <form:input path="offer.detailsOffer"/>--%>
-<%--    <form:errors path="offer.detailsOffer"/><br/>--%>
-
-
     <input type="submit" value="Save">
 </form:form>
 
 </body>
 </html>
+
 

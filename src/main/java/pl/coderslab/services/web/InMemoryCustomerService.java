@@ -23,12 +23,12 @@ public class InMemoryCustomerService implements CustomerService {
         log.info("Tworzenie listy klientow...");
         list = new ArrayList<>();
 
-        list.add(new Customer(11111111111L, "Tymek", "Pazur", "Wrocław",
-                "123456789", "Przedstaw ofertę",false));
-        list.add(new Customer(21111111111L, "Tymekk", "Pazurr", "Wrocławw",
-                "1234567891", "Oddzwoń",true));
-        list.add(new Customer(31111111111L, "Tymekkk", "Pazurrr", "Wrocławww",
-                "12345678911", "Formularz",true));
+//        list.add(new Customer(11111111111L, "Tymek", "Pazur", "Wrocław",
+//                "123456789", "Przedstaw ofertę",false));
+//        list.add(new Customer(21111111111L, "Tymekk", "Pazurr", "Wrocławw",
+//                "1234567891", "Oddzwoń",true));
+//        list.add(new Customer(31111111111L, "Tymekkk", "Pazurrr", "Wrocławww",
+//                "12345678911", "Formularz",true));
     }
     @Override
     public List<Customer> getCustomers (){

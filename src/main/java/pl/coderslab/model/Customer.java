@@ -2,10 +2,7 @@ package pl.coderslab.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "customers")
@@ -21,8 +18,12 @@ public class Customer {
     private Long pesel;
     private String name;
     private String surname;
-    private String city;
     private String phoneNumber;
-    private String information;
-    private Boolean offer;
+
+
+    @OneToOne
+    private Information information;
+
+    @ManyToOne
+    private Offer offer;
 }
