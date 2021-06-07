@@ -1,11 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>List Of Customers</title>
 </head>
 <body>
-
+<c:if test="${not empty notification}">
+    <p>${notification}</p>
+</c:if>
 <table border="1">
     <thead>
     <th>pesel</th>
@@ -14,6 +18,7 @@
     <th>phoneNumber</th>
     <th>information</th>
     <th>Offer</th>
+    <th>Akcja</th>
     </thead>
     <tbody>
     <c:forEach items="${customers}" var="customer">

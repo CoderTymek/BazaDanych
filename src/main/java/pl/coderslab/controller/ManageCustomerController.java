@@ -21,9 +21,14 @@ import java.util.List;
 @RequestMapping("/admin/customers")
 public class ManageCustomerController {
     private final CustomerService customerService;
+    private final OfferRepository offerRepository;
+    private final InformationRepository informationRepository;
 
-    public ManageCustomerController(CustomerService customerService) {
+
+    public ManageCustomerController(CustomerService customerService, OfferRepository offerRepository, InformationRepository informationRepository) {
         this.customerService = customerService;
+        this.offerRepository = offerRepository;
+        this.informationRepository = informationRepository;
     }
 
     @GetMapping("/all")
@@ -33,9 +38,11 @@ public class ManageCustomerController {
         return "index";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String showAddForm(Model model){
+    @GetMapping(value = "/add")
+    public String showAddForm(Model model) {
         model.addAttribute("customer", new Customer());
+        model.addAttribute("offers", this.offerRepository.findAll());
+        model.addAttribute("informations", this.informationRepository.findAll());
         return "add";
     }
 
@@ -75,7 +82,7 @@ public class ManageCustomerController {
         return "redirect:/admin/customers/all";
     }
 
-    @GetMapping("/delete/{pesel}")
+    @PostMapping("/delete/{pesel}")
     public String deleteCustomer(@PathVariable long pesel, RedirectAttributes redirectAttributes) {
         customerService.deleteCustomer(pesel);
         redirectAttributes.addFlashAttribute("notification", "Udało się usunąć klienta");

@@ -49,8 +49,8 @@ public class InMemoryCustomerService implements CustomerService {
     @Override
     public Customer addCustomer(Customer customerToAdd){
         log.debug("Dodawanie klienta:{}", customerToAdd);
-        if(customerToAdd.getInformation() == null || customerToAdd.getInformation().isBlank()) {
-            throw new BadResourceException("Customer must have an information");
+        if(customerToAdd.getName() == null) {
+            throw new BadResourceException("Customer must have an name");
         }
         log.debug("Ustalone id dla klienta:{}",customerToAdd.getPesel());
         list.add(customerToAdd);

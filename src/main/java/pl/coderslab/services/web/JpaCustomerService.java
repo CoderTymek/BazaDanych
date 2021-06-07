@@ -27,7 +27,7 @@ public class JpaCustomerService implements CustomerService {
 
     @Override
     public Customer getCustomerByPesel(Long pesel) {
-        return null;
+        return this.customerRepository.findById(pesel).orElse(null);
     }
 
     @Override
@@ -37,12 +37,12 @@ public class JpaCustomerService implements CustomerService {
 
     @Override
     public void updateCustomer(Customer customerToUpdated) {
-
+        customerRepository.save(customerToUpdated);
     }
 
     @Override
     public void deleteCustomer(Long pesel) {
-
+        customerRepository.deleteById(pesel);
     }
 
 
