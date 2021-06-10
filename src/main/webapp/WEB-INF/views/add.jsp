@@ -12,6 +12,22 @@
 <html>
 <head>
     <title>New Customer</title>
+
+    <style>
+        .addForm {
+            display: flex;
+            flex-direction: column;
+
+            margin: 50px auto;
+            border: 1px solid #000;
+            width: fit-content;
+        }
+
+        .formInput {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 <body>
 

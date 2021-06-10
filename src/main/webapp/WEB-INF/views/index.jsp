@@ -10,6 +10,23 @@
 <c:if test="${not empty notification}">
     <p>${notification}</p>
 </c:if>
+<form:form method="post"
+           modelAttribute="customerSearchForm">
+    <form:input path="text"/>
+    <form:errors path="text"/>
+
+    <form:select path="information.id" multiple="false" size="1">
+        <form:option value="-1">Nie wyszukuj klientów za pomocą informacji</form:option>
+        <form:options items="${informations}" itemValue="id" itemLabel="name"/>
+    </form:select>
+
+    <input type="submit" value="Search">
+</form:form>
+
+<p>Przedstaw oferte- Zadzwon do klienta i przedstaw mu warunki oferty</p>
+<p>List - Zadzwon do klienta spytaj sie czy przyszedl list oraz przedstaw warunki oferty</p>
+<p>List i oferta - Zadzwon do klienta, przedstaw propozycje oraz poinformuj, ze zostanie wyslany list</p>
+
 <table border="1">
     <thead>
     <th>pesel</th>

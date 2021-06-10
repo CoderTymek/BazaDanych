@@ -15,6 +15,7 @@ import pl.coderslab.model.Customer;
 import pl.coderslab.services.CustomerService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,6 +36,44 @@ public class ManageCustomerController {
     public String showPosts(Model model){
         List<Customer> customers = customerService.getCustomers();
         model.addAttribute("customers", customers);
+        model.addAttribute("customerSearchForm", new CustomerSearchForm());
+        model.addAttribute("informations", this.informationRepository.findAll());
+        return "index";
+    }
+
+    @PostMapping("/all")
+    public String searchCustomers(CustomerSearchForm form, Model model){
+        List<Customer> customers = new ArrayList<>();
+
+        String text = form.getText();
+        if (text != null && text.length() == 11)
+        {
+            try
+            {
+                Long pesel = Long.parseLong(text);
+                customers.add(customerService.getCustomerByPesel(pesel));
+            }
+            catch (NumberFormatException ignored)
+            {
+            }
+        }
+        if (text != null)
+        {
+            customers.addAll(customerService.getCustomersByKeyword(text));
+        }
+        Information information = form.getInformation();
+        boolean hasInformation = information != null && information.getId() != -1;
+        if (hasInformation)
+        {
+            customers.addAll(customerService.getCustomersByInformation(information));
+        }
+        if ((text == null || text.isBlank()) && !hasInformation)
+        {
+            customers.addAll(customerService.getCustomers());
+        }
+        model.addAttribute("customers", customers);
+        model.addAttribute("customerSearchForm", form);
+        model.addAttribute("informations", this.informationRepository.findAll());
         return "index";
     }
 
@@ -47,8 +86,10 @@ public class ManageCustomerController {
     }
 
     @PostMapping(value = "/add")
-    public String saveCustomer(@Valid Customer customer, BindingResult result) {
+    public String saveCustomer(@Valid Customer customer, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("offers", this.offerRepository.findAll());
+            model.addAttribute("informations", this.informationRepository.findAll());
             return "add";
         }
         customerService.addCustomer(customer);
@@ -68,8 +109,10 @@ public class ManageCustomerController {
     }
 
     @PostMapping(value = "/edit/{pesel}")
-    public String editCustomer(@PathVariable long pesel, @Valid Customer customer, BindingResult result) {
+    public String editCustomer(@PathVariable long pesel, @Valid Customer customer, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("offers", this.offerRepository.findAll());
+            model.addAttribute("informations", this.informationRepository.findAll());
             return "edit";
         }
         if (customer.getPesel() != pesel) {

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.exceptions.BadResourceException;
 import pl.coderslab.exceptions.ResourceNotFoundException;
 import pl.coderslab.model.Customer;
+import pl.coderslab.model.Information;
 import pl.coderslab.services.CustomerService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -47,6 +49,11 @@ public class InMemoryCustomerService implements CustomerService {
     }
 
     @Override
+    public List<Customer> getCustomersByKeyword(String keyword) {
+        return Collections.emptyList();
+    }
+
+    @Override
     public Customer addCustomer(Customer customerToAdd){
         log.debug("Dodawanie klienta:{}", customerToAdd);
         if(customerToAdd.getName() == null) {
@@ -80,5 +87,10 @@ public class InMemoryCustomerService implements CustomerService {
                     throw new ResourceNotFoundException();
                 });
         log.debug("Liczba klientów po usunięciu: {}", list.size());
+    }
+
+    @Override
+    public List<Customer> getCustomersByInformation(Information information) {
+        return Collections.emptyList();
     }
 }

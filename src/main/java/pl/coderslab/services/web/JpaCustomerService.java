@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import pl.coderslab.Repository.CustomerRepository;
 import pl.coderslab.model.Customer;
+import pl.coderslab.model.Information;
 import pl.coderslab.services.CustomerService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Primary
@@ -23,6 +23,11 @@ public class JpaCustomerService implements CustomerService {
     @Override
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
+    }
+
+    @Override
+    public List<Customer> getCustomersByKeyword(String keyword) {
+        return customerRepository.findByNameOrSurnameOrPhoneNumber(keyword, keyword, keyword);
     }
 
     @Override
@@ -45,7 +50,8 @@ public class JpaCustomerService implements CustomerService {
         customerRepository.deleteById(pesel);
     }
 
-
-
-
+    @Override
+    public List<Customer> getCustomersByInformation(Information information) {
+        return customerRepository.findByInformation(information);
+    }
 }
