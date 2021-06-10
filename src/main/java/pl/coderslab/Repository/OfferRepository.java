@@ -6,4 +6,5 @@ import pl.coderslab.model.Offer;
 
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long> {
+
 }

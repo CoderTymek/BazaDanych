@@ -12,6 +12,8 @@ import pl.coderslab.Repository.InformationRepository;
 import pl.coderslab.Repository.OfferRepository;
 import pl.coderslab.exceptions.ResourceNotFoundException;
 import pl.coderslab.model.Customer;
+import pl.coderslab.model.CustomerSearchForm;
+import pl.coderslab.model.Information;
 import pl.coderslab.services.CustomerService;
 
 import javax.validation.Valid;
