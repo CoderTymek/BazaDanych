@@ -26,7 +26,10 @@
 <p>Przedstaw oferte- Zadzwon do klienta i przedstaw mu warunki oferty</p>
 <p>List - Zadzwon do klienta spytaj sie czy przyszedl list oraz przedstaw warunki oferty</p>
 <p>List i oferta - Zadzwon do klienta, przedstaw propozycje oraz poinformuj, ze zostanie wyslany list</p>
-
+<td>
+    <form:form method="post" action="/admin/customers/add">
+        <input type="submit" value="DODAJ KLIENTA"/>
+    </form:form></td>
 <table border="1">
     <thead>
     <th>pesel</th>
