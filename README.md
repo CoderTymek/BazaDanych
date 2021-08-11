@@ -1,3 +1,9 @@
 # BazaDanych
-Projekt koncowy/Pierwszy projekt
-Nazywam się Tymoteusz Pazur
+Witam,
+Przedstawiam tutaj mój pierwszy projekt,
+który został stworzony w ramach projektu końcowego dla Coderslab
+
+Użyte technologie:
+-Java
+-Spring
+-Hibernate
